@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - IIT Consultancy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --black: #000000;
+      --dark-gray: #1f2937;
+      --medium-gray: #4b5563;
+      --light-gray: #9ca3af;
+      --lighter-gray: #d1d5db;
+      --pale-gray: #f3f4f6;
+      --white: #ffffff;
+      --border: #e5e7eb;
+      --accent-blue: #3b82f6;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--pale-gray);
+      color: var(--dark-gray);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+    
+    /* HEADER - MATCHES index.html & about.html */
+    header {
+      background: var(--black);
+      color: var(--white);
+      padding: 0.8rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.25);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.3rem 0;
+      transition: all 0.3s;
+      font-size: 0.8rem;
+      font-family: 'Inter';
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    nav a:hover, nav a.active {
+      color: var(--lighter-gray);
+      border-bottom: 2px solid var(--lighter-gray);
+    }
+    .logo {
+      font-family: 'Poppins';
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+    
+    /* ADMIN DASHBOARD CONTENT - ALL ORIGINAL STYLES PRESERVED */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .dashboard {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: var(--white);
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      color: var(--medium-gray);
+      font-weight: 500;
+    }
+    .table-container {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .table-header {
+      padding: 1.5rem 2rem;
+      background: var(--pale-gray);
+      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      color: var(--dark-gray);
+      font-size: 1.1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    th {
+      background: var(--pale-gray);
+      font-weight: 600;
+      color: var(--dark-gray);
+    }
+    .status {
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .status.active { background: #dcfce7; color: var(--success); }
+    .status.pending { background: #fef3c7; color: var(--warning); }
+    .status.inactive { background: #fee2e2; color: var(--danger); }
+    
+    /* FOOTER - MATCHES OTHER PAGES */
+    footer {
+      background: var(--dark-gray);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    footer p {
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: 'Poppins';
+    }
+    .founder-text {
+      color: var(--lighter-gray);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav ul { flex-wrap: wrap; gap: 0.8rem; }
+      .dashboard { padding: 1.5rem 1rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      main { margin: 1.5rem auto; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER - IDENTICAL TO index.html & about.html -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">IIT Consultancy</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="for-employers.html">Employers</a></li>
+          <li><a href="for-candidates.html">Candidates</a></li>
+          <li><a href="talent-hub.html">Talent Hub</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="login.html" class="active">Admin Dashboard</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ALL ORIGINAL DASHBOARD CONTENT PRESERVED -->
+  <main>
+    <section class="dashboard">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--accent-blue); color: white;">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="stat-number">1,247</div>
+          <div class="stat-label">Total Candidates</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--success); color: white;">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <div class="stat-number">89</div>
+          <div class="stat-label">Active Jobs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--warning); color: white;">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="stat-number">234</div>
+          <div class="stat-label">Interviews Scheduled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: var(--danger); color: white;">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stat-number">156</div>
+          <div class="stat-label">Placements Made</div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <div class="table-header">
+          <i class="fas fa-users"></i> Recent Candidates
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Experience</th>
+              <th>Status</th>
+              <th>Applied</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Anjali Patel</strong></td>
+              <td>Data Scientist</td>
+              <td>6+ years</td>
+              <td><span class="status active">Active</span></td>
+              <td>2 days ago</td>
+            </tr>
+            <tr>
+              <td><strong>Ravi Sankar</strong></td>
+              <td>Full Stack Developer</td>
+              <td>4 years</td>
+              <td><span class="status pending">Interview</span></td>
+              <td>5 days ago</td>
+            </tr>
+            <tr>
+              <td><strong>Neha Kumar</strong></td>
+              <td>UI/UX Designer</td>
+              <td>3 years</td>
+              <td><span class="status active">Active</span></td>
+              <td>1 week ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER - IDENTICAL TO OTHER PAGES -->
+  <footer>
+    <div class="container">
+      <p>© 2025 IIT Consultancy</p>
+      <p class="founder-text">Founded by P. Rajinikanth Reddy</p>
+    </div>
+  </footer>
+</body>
+</html>

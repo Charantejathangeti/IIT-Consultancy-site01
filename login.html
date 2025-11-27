@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login - IIT Consultancy</title>
+<style>
+  :root {
+    --body-bg: #fafbfc;
+    --card-bg: #fff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #64748b;
+
+    --header-bg: #0f172a;
+    --footer-bg: #111827;
+    --menu-text: #f1f5f9;
+    --menu-hover: #e2e8f0;
+    --border-light: #e2e8f0;
+
+    /* ✅ BLUE COLORS */
+    --btn-blue: #007BFF;
+    --btn-blue-hover: #0056b3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--body-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--header-bg);
+    color: var(--menu-text);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(15,23,42,0.3);
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  nav ul {
+    list-style: none; display: flex; gap: 2rem; align-items: center;
+  }
+  nav a {
+    color: var(--menu-text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+    font-size: 1rem;
+  }
+  nav a:hover, nav a.active {
+    color: var(--menu-hover);
+    border-bottom: 2px solid var(--menu-hover);
+  }
+
+  main {
+    flex-grow: 1;
+    max-width: 400px;
+    background: var(--card-bg);
+    margin: 3rem auto 4rem;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+  }
+
+  label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: var(--menu-hover);
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background: var(--header-bg);
+    color: var(--menu-text);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background: var(--menu-hover);
+    color: var(--header-bg);
+  }
+
+  .form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  /* ✅ BLUE SIGNUP LINK */
+  .form-footer .signup-link {
+    color: var(--btn-blue) !important;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.4rem;
+    transition: all 0.3s ease;
+  }
+  
+  .form-footer .signup-link:hover {
+    color: var(--btn-blue-hover) !important;
+    text-decoration: underline;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--footer-bg);
+    color: var(--menu-text);
+    padding: 3rem 1rem 2rem;
+    margin-top: auto;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-links li {
+    margin-bottom: 1rem;
+  }
+  .footer-links a {
+    color: var(--menu-hover);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 0.25rem 0;
+  }
+  .footer-links a:hover {
+    color: var(--menu-text);
+    transform: translateX(4px);
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  .footer-contact-item {
+    display: flex;
+    gap: 1rem;
+    background: rgba(255,255,255,0.08);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    align-items: center;
+    min-width: 250px;
+    transition: transform 0.3s;
+  }
+
+  .footer-contact-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .footer-contact-item strong {
+    color: var(--menu-text);
+    font-weight: 700;
+  }
+
+  .footer-bottom {
+    width: 100%;
+    text-align: center;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    margin-top: 2rem;
+    max-width: 600px;
+  }
+
+  .copyright {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--menu-text);
+    margin-bottom: 0.5rem;
+  }
+  .founder-text {
+    color: var(--menu-hover);
+    font-weight: 600;
+  }
+
+  .stpi-footer {
+    background: var(--header-bg);
+    color: var(--menu-text);
+    font-weight: 700;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-top: 2px solid rgba(255,255,255,0.1);
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .footer-contact-item {
+      min-width: auto;
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div style="font-weight: 700; font-size: 1.3rem; color: var(--menu-text);">IIT Consultancy</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="for-employers.html">Employers</a></li>
+        <li><a href="for-candidates.html">Candidates</a></li>
+        <li><a href="talent-hub.html">Talent Hub</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Login to Your Account</h1>
+  <form action="#" method="POST" aria-label="Login form">
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required />
+    
+    <button type="submit">Log In</button>
+  </form>
+  
+  <!-- ✅ BLUE "Sign Up" LINK -->
+  <div class="form-footer">
+    Don't have an account? 
+    <a href="signup.html" class="signup-link">Sign Up</a>
+  </div><script>
+     // After successful login
+if (data.user.role === 'candidate') {
+  window.location.href = 'candidate-dashboard.html';
+} else if (data.user.role === 'employer') {
+  window.location.href = 'employer-dashboard.html';
+} else if (data.user.role === 'admin') {
+  window.location.href = 'admin-dashboard.html';
+}
+  </script>
+ 
+</main>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>🏢 Company</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="for-employers.html">For Employers</a></li>
+          <li><a href="for-candidates.html">For Candidates</a></li>
+          <li><a href="talent-hub.html">Talent Hub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>⚡ Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+          <li><a href="employer-dashboard.html">Employer Dashboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>📞 Contact</h3>
+        <div class="footer-contact">
+          <div class="footer-contact-item">
+            <div>📱</div>
+            <div><strong>+91 9392201234</strong><br><small>+91 8712345519</small></div>
+          </div>
+          <div class="footer-contact-item">
+            <div>📍</div>
+            <div><strong>STPI Tirupati</strong><br><small>Survey No. 234, Behind Shilparamam</small></div>
+          </div>
+          <div class="footer-contact-item">
+            <div>✉️</div>
+            <div><strong>info@iitconsultancy.com</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© 2025 IIT Consultancy / IIT Services</p>
+      <p class="founder-text">Founded by P. Rajinikanth Reddy | All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<div class="stpi-footer">
+  Software Technology Parks of India (STPI) | Tirupati, AP 517501
+</div>
+
+</body>
+</html>

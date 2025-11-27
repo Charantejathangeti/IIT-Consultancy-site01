@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Talent Hub - IIT Consultancy</title>
+  <link rel="icon" href="assets/svg/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --body-bg: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --border-light: #e5e7eb;
+      --header-bg: #111827;
+      --footer-bg: #1f2937;
+      --menu-text: #f9fafb;
+      --menu-hover: #d1d5db;
+      --accent-gray: #9ca3af;
+      --blue-accent: #3b82f6;
+      --blue-text: #2563eb;
+    }
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--body-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+    h1,h2,h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+    }
+    header {
+      background: var(--header-bg);
+      color: var(--menu-text);
+      padding: 1.2rem 0;
+      position: sticky;
+      top:0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(17,24,39,0.4);
+    }
+    .container{max-width:1200px; margin:0 auto; padding:0 1.5rem;}
+    nav {display:flex; justify-content:space-between; align-items:center;}
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:2rem;
+      align-items:center;
+    }
+    nav a {
+      color: var(--menu-text);
+      text-decoration:none;
+      font-weight:500;
+      padding:0.5rem 0;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    nav a:hover, nav a.active {
+      color: var(--menu-hover);
+      border-bottom: 2px solid var(--menu-hover);
+    }
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--menu-text);
+    }
+    main {
+      max-width: 1400px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    .talent-hero {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      color: var(--text-primary);
+      padding: 4rem 2rem;
+      text-align: center;
+      border-radius: 24px;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-light);
+    }
+    .talent-hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .talent-hero p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: 'Inter', sans-serif;
+    }
+    .search-container {
+      max-width: 1000px;
+      margin: 0 auto 3rem;
+    }
+    .search-bar {
+      display: flex;
+      gap: 1rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      padding: 1.25rem;
+      border: 2px solid var(--border-light);
+      border-radius: 50px;
+      background: var(--card-bg);
+      font-size: 1.1rem;
+      min-width: 300px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.3s;
+    }
+    .search-input:focus {
+      outline: none;
+      border-color: var(--blue-accent);
+    }
+    .search-btn {
+      padding:1.25rem 2rem;
+      background: var(--header-bg);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .search-btn:hover {
+      background: #374151;
+      transform: translateY(-2px);
+    }
+    .filters {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      align-items: center;
+    }
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-light);
+      background: var(--card-bg);
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--header-bg);
+      color: white;
+      border-color: var(--header-bg);
+      transform: translateY(-2px);
+    }
+    .experience-filter {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-light);
+      border-radius: 25px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+    }
+    .experience-filter.active {
+      background: var(--header-bg);
+      color: white;
+      border-color: var(--header-bg);
+    }
+    .experience-select {
+      background: none;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      color: inherit;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .talent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+    a.profile-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    a.profile-link:hover {
+      transform: translateY(-8px);
+    }
+    .talent-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid var(--border-light);
+      padding: 1.8rem 2rem;
+    }
+    .talent-header {
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .talent-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .talent-role {
+      color: var(--accent-gray);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .talent-experience {
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 1.1rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .talent-stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      font-family: 'Inter', sans-serif;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'Poppins', sans-serif;
+    }
+    .stat div:last-child {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+    }
+    .view-profile-btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      background: transparent;
+      color: var(--blue-text);
+      border: 2px solid var(--blue-text);
+      border-radius: 24px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      text-align: center;
+    }
+    .view-profile-btn:hover {
+      background: var(--blue-text);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .talent-skills {
+      padding-top: 0.8rem;
+      background: #f9fafb;
+    }
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .skill-tag {
+      background: var(--lighter-gray);
+      color: var(--text-primary);
+      padding: 0.45rem 1.1rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* CORRECTED FOOTER - MATCHES index.html & about.html */
+    footer {
+      background: var(--footer-bg);
+      color: var(--menu-text);
+      padding: 4rem 1rem 2rem;
+      margin-top: 6rem;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-content { padding: 3rem 0 2rem; max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--menu-text);
+      margin-bottom: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-links a {
+      color: var(--lighter-gray);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover {
+      color: var(--menu-text);
+    }
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .footer-contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      min-width: 200px;
+    }
+    .footer-contact-item div:first-child {
+      font-size: 1.3rem;
+      margin-top: 0.2rem;
+      min-width: 30px;
+    }
+    .footer-contact-item div:last-child {
+      flex: 1;
+    }
+    .footer-bottom {
+      border-top: 1px solid #374151;
+      padding-top: 2rem;
+    }
+    .copyright {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--menu-text);
+      margin-bottom: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+    }
+    .founder-text {
+      color: #9ca3af;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+    .stpi-footer {
+      background: var(--header-bg);
+      color: var(--menu-text);
+      font-weight: 700;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-top: 2px solid rgba(255,255,255,0.1);
+      font-family: 'Inter', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      nav ul { flex-wrap: wrap; gap: 1rem; }
+      .search-bar { flex-direction: column; }
+      .search-input { min-width: auto; }
+      .talent-grid { grid-template-columns: 1fr; }
+      .talent-hero h1 { font-size: 2.2rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-contact-item { min-width: auto; flex-direction: column; text-align: center; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">IIT Consultancy</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="for-employers.html">Employers</a></li>
+          <li><a href="for-candidates.html">Candidates</a></li>
+          <li><a href="talent-hub.html" class="active">Talent Hub</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="talent-hero">
+      <h1>Talent Hub</h1>
+      <p>Discover Top IIT Talent for Your Organization</p>
+    </section>
+
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search by name, skills, role..." />
+        <button class="search-btn" onclick="searchTalent()">🔍 Search</button>
+      </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All Talents</button>
+        <button class="filter-btn" data-filter="developer">Developers</button>
+        <button class="filter-btn" data-filter="data">Data Science</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <div class="experience-filter" id="experienceFilter">
+          <span>📊 Experience:</span>
+          <select class="experience-select" id="experienceSelect">
+            <option value="all">All</option>
+            <option value="0-2">0-2 Years</option>
+            <option value="3-5">3-5 Years</option>
+            <option value="5+">5+ Years</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="talent-grid" id="talentGrid"></div>
+  </main>
+
+  <!-- ✅ PERFECT FOOTER MATCHING index.html & about.html -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>🏢 Company</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="for-employers.html">For Employers</a></li>
+            <li><a href="for-candidates.html">For Candidates</a></li>
+            <li><a href="talent-hub.html">Talent Hub</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>⚡ Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="employer-dashboard.html">Employer Dashboard</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>📞 Contact</h3>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <div>📱</div><div><strong>+91 9392201234</strong><br /><small>+91 8712345519</small></div>
+            </div>
+            <div class="footer-contact-item">
+              <div>📍</div><div><strong>STPI Tirupati</strong><br /><small>Survey No. 234, Behind Shilparamam</small></div>
+            </div>
+            <div class="footer-contact-item">
+              <div>✉️</div><div><strong>info@iitconsultancy.com</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="copyright">© 2025 IIT Consultancy / IIT Services</p>
+        <p class="founder-text">Founded by P. Rajinikanth Reddy | All Rights Reserved</p>
+      </div>
+    </div>
+  </footer>
+  <div class="stpi-footer">Software Technology Parks of India (STPI) | Tirupati, AP 517501</div>
+
+  <script>
+    const talents = [
+      {
+        id: "anjali-patel",
+        name: "Anjali Patel",
+        role: "Senior Python Data Scientist",
+        exp: 6,
+        expText: "6+",
+        skills: ["Python", "Machine Learning", "SQL", "Pandas"],
+        category: "data"
+      },
+      {
+        id: "ravi-sankar",
+        name: "Ravi Sankar",
+        role: "Full Stack Developer",
+        exp: 4,
+        expText: "4",
+        skills: ["React", "Node.js", "MongoDB"],
+        category: "developer"
+      },
+      {
+        id: "neha-kumar",
+        name: "Neha Kumar",
+        role: "UI/UX Designer",
+        exp: 3,
+        expText: "3",
+        skills: ["Figma", "Adobe XD", "Sketch"],
+        category: "design"
+      }
+    ];
+
+    const talentGrid = document.getElementById("talentGrid");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const experienceSelect = document.getElementById("experienceSelect");
+    const searchInput = document.getElementById("searchInput");
+
+    function renderTalents(filter = "all", expFilter = "all", searchText = "") {
+      let talentsToShow = talents;
+      if (filter !== "all") {
+        talentsToShow = talentsToShow.filter(t => t.category === filter);
+      }
+      if (expFilter !== "all") {
+        talentsToShow = talentsToShow.filter(t => {
+          if (expFilter === "0-2") return t.exp <= 2;
+          else if (expFilter === "3-5") return t.exp >= 3 && t.exp <= 5;
+          else if (expFilter === "5+") return t.exp >= 5;
+          return true;
+        });
+      }
+      if (searchText.trim() !== "") {
+        talentsToShow = talentsToShow.filter(t => {
+          const text = searchText.toLowerCase();
+          return t.name.toLowerCase().includes(text) ||
+                 t.role.toLowerCase().includes(text) ||
+                 t.skills.some(skill => skill.toLowerCase().includes(text));
+        });
+      }
+      talentGrid.innerHTML = talentsToShow.map(talent => `
+        <a href="candidate-profile.html?candidate=${encodeURIComponent(talent.id)}" class="profile-link">
+          <div class="talent-card">
+            <div class="talent-header">
+              <h2 class="talent-name">${talent.name}</h2>
+              <div class="talent-role">${talent.role}</div>
+              <div class="talent-experience">🕐 ${talent.expText} Years Experience</div>
+              <div class="talent-stats">
+                <div class="stat">
+                  <div class="stat-number">${talent.skills.length}</div>
+                  <div>Skills</div>
+                </div>
+              </div>
+              <span class="view-profile-btn">View Profile →</span>
+            </div>
+            <div class="talent-skills">
+              <div class="skills-list">
+                ${talent.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    function handleFilterClick(e) {
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      e.target.classList.add("active");
+      const filter = e.target.getAttribute("data-filter");
+      const expFilter = experienceSelect.value;
+      const searchText = searchInput.value;
+      renderTalents(filter, expFilter, searchText);
+    }
+
+    filterButtons.forEach(btn => btn.addEventListener("click", handleFilterClick));
+    experienceSelect.addEventListener("change", () => {
+      const filter = document.querySelector(".filter-btn.active").getAttribute("data-filter");
+      const expFilter = experienceSelect.value;
+      const searchText = searchInput.value;
+      renderTalents(filter, expFilter, searchText);
+    });
+
+    function searchTalent() {
+      const filter = document.querySelector(".filter-btn.active").getAttribute("data-filter");
+      const expFilter = experienceSelect.value;
+      const searchText = searchInput.value;
+      renderTalents(filter, expFilter, searchText);
+    }
+
+    // Search on Enter
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") searchTalent();
+    });
+
+    renderTalents();
+  </script>
+</body>
+</html>

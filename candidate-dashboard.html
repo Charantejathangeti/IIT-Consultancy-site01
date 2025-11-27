@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Dashboard | IIT Consultancy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --black:#000000; --dark-gray:#1f2937; --medium-gray:#4b5563; --light-gray:#9ca3af;
+      --lighter-gray:#d1d5db; --pale-gray:#f3f4f6; --white:#ffffff; --border:#e5e7eb;
+      --success:#10b981; --warning:#f59e0b; --danger:#ef4444; --blue:#3b82f6;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:var(--pale-gray);color:var(--dark-gray);font-size:14px;line-height:1.5;}
+    
+    /* HEADER - IDENTICAL TO ALL PAGES */
+    header{background:var(--black);color:var(--white);padding:0.8rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 15px rgba(0,0,0,0.25);}
+    .container{max-width:1200px;margin:0 auto;padding:0 1rem;}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    nav ul{list-style:none;display:flex;gap:1.8rem;align-items:center;}
+    nav a{color:var(--white);text-decoration:none;font-weight:500;padding:0.3rem 0;transition:all 0.3s;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.3px;}
+    nav a:hover,nav a.active{color:var(--lighter-gray);border-bottom:2px solid var(--lighter-gray);}
+    .logo{font-family:'Poppins';font-weight:700;font-size:1.2rem;color:var(--white);}
+    
+    /* DASHBOARD LAYOUT */
+    main{max-width:1200px;margin:2rem auto;padding:0 1rem;}
+    .dashboard-grid{display:grid;grid-template-columns:1fr 300px;gap:2rem;}
+    .dashboard-main{background:var(--white);border-radius:12px;padding:2rem;box-shadow:0 8px 20px rgba(0,0,0,0.06);border:1px solid var(--border);}
+    .dashboard-sidebar{background:var(--white);border-radius:12px;padding:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.06);border:1px solid var(--border);height:fit-content;}
+    
+    /* SECTIONS & STATS */
+    .section-title{display:flex;align-items:center;gap:0.5rem;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:1.5rem;padding-bottom:0.5rem;border-bottom:2px solid var(--lighter-gray);font-family:'Poppins';}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;}
+    .stat-card{padding:1.5rem;border-radius:12px;background:var(--pale-gray);border:1px solid var(--border);text-align:center;transition:all 0.3s;}
+    .stat-card:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.1);}
+    .stat-number{font-size:1.8rem;font-weight:700;font-family:'Poppins';margin-bottom:0.25rem;}
+    .stat-label{color:var(--medium-gray);font-weight:500;}
+    
+    /* TABLE WITH INLINE BUTTONS */
+    .applications-table{width:100%;border-collapse:collapse;margin-top:1rem;}
+    .applications-table th{padding:1rem 1rem;background:var(--pale-gray);font-weight:600;color:var(--dark-gray);text-align:left;}
+    .applications-table td{padding:1rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+    .status{padding:0.25rem 0.75rem;border-radius:20px;font-size:0.75rem;font-weight:600;}
+    .status.applied{background:#dbeafe;color:var(--blue);}
+    .status.interview{background:#fef3c7;color:var(--warning);}
+    .status.rejected{background:#fee2e2;color:var(--danger);}
+    
+    /* ✅ INLINE BUTTONS - ONE LINE */
+    .action-buttons{display:flex;gap:0.5rem;align-items:center;flex-wrap:nowrap;}
+    .action-buttons .btn{flex-shrink:0;white-space:nowrap;padding:0.4rem 0.8rem;font-size:0.8rem;}
+    
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:0.6rem 1.2rem;border-radius:8px;font-weight:600;font-size:0.85rem;text-decoration:none;transition:all 0.3s;text-transform:uppercase;letter-spacing:0.3px;border:none;cursor:pointer;}
+    .btn-primary{background:var(--black);color:var(--white);}
+    .btn-primary:hover{background:var(--dark-gray);transform:translateY(-1px);}
+    .btn-secondary{background:transparent;border:2px solid var(--border);color:var(--dark-gray);}
+    .btn-secondary:hover{background:var(--border);color:var(--black);transform:translateY(-1px);}
+    
+    .quick-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
+    
+    /* FOOTER */
+    footer{background:var(--dark-gray);color:var(--white);padding:1.5rem 1rem;text-align:center;margin-top:3rem;}
+    footer p{font-weight:700;font-size:1rem;font-family:'Poppins';}
+    .founder-text{color:var(--lighter-gray);font-size:0.85rem;font-weight:500;}
+    
+    /* RESPONSIVE */
+    @media (max-width:768px){
+      nav ul{flex-wrap:wrap;gap:0.8rem;}
+      .dashboard-grid{grid-template-columns:1fr;}
+      .action-buttons{flex-direction:column;gap:0.25rem;}
+      main{margin:1.5rem auto;}
+      .dashboard-main,.dashboard-sidebar{padding:1.5rem 1rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">IIT Consultancy</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="for-employers.html">Employers</a></li>
+          <li><a href="for-candidates.html" class="active">Candidates</a></li>
+          <li><a href="talent-hub.html">Talent Hub</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN DASHBOARD -->
+  <main>
+    <div class="dashboard-grid">
+      <!-- MAIN CONTENT -->
+      <div class="dashboard-main">
+        <h2 class="section-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" style="color:var(--success);">12</div>
+            <div class="stat-label">Applied Jobs</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="color:var(--warning);">3</div>
+            <div class="stat-label">Interviews</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="color:var(--danger);">0</div>
+            <div class="stat-label">Rejections</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Saved Jobs</div>
+          </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-briefcase"></i> Recent Applications</h3>
+        <table class="applications-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TechNova Solutions</strong></td>
+              <td>Data Scientist</td>
+              <td><span class="status interview">Interview</span></td>
+              <td>2 days ago</td>
+              <td>
+                <!-- ✅ BUTTONS IN ONE LINE -->
+                <div class="action-buttons">
+                  <a href="#" class="btn btn-primary">View</a>
+                  <a href="#" class="btn btn-secondary">Details</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>WebCrafters</strong></td>
+              <td>Full Stack Developer</td>
+              <td><span class="status applied">Applied</span></td>
+              <td>5 days ago</td>
+              <td>
+                <div class="action-buttons">
+                  <a href="#" class="btn btn-primary">View</a>
+                  <a href="#" class="btn btn-secondary">Details</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>DataForge Analytics</strong></td>
+              <td>ML Engineer</td>
+              <td><span class="status applied">Applied</span></td>
+              <td>1 week ago</td>
+              <td>
+                <div class="action-buttons">
+                  <a href="#" class="btn btn-primary">View</a>
+                  <a href="#" class="btn btn-secondary">Details</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="quick-actions">
+          <a href="candidate-profile.html" class="btn btn-primary">Update Profile</a>
+          <a href="talent-hub.html" class="btn btn-secondary">Find Jobs</a>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="dashboard-sidebar">
+        <h3 class="section-title"><i class="fas fa-chart-pie"></i> Quick Stats</h3>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-number">4.8</div><div class="stat-label">Rating</div></div>
+          <div class="stat-card"><div class="stat-number">6+</div><div class="stat-label">Experience</div></div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="employer-dashboard.html" class="btn btn-primary" style="width:100%;">Contact Employers</a>
+          <a href="admin-dashboard.html" class="btn btn-secondary" style="width:100%;margin-top:0.5rem;">Admin Support</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>© 2025 IIT Consultancy</p>
+      <p class="founder-text">Founded by P. Rajinikanth Reddy</p>
+    </div>
+  </footer>
+</body>
+</html>

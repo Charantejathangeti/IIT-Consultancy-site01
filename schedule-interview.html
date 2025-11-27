@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule Interview | IIT Consultancy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --black:#000000; --dark-gray:#1f2937; --medium-gray:#4b5563; --light-gray:#9ca3af;
+      --lighter-gray:#d1d5db; --pale-gray:#f3f4f6; --white:#ffffff; --border:#e5e7eb;
+      --success:#10b981; --blue:#3b82f6;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:var(--pale-gray);color:var(--dark-gray);font-size:14px;line-height:1.5;}
+    header{background:var(--black);color:var(--white);padding:0.8rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 15px rgba(0,0,0,0.25);}
+    .container{max-width:900px;margin:0 auto;padding:0 1rem;}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    .logo{font-family:'Poppins';font-weight:700;font-size:1.2rem;color:var(--white);}
+    nav a{color:var(--white);text-decoration:none;font-weight:500;font-size:0.8rem;}
+    
+    .candidate-header{background:var(--white);border-radius:12px;padding:1.5rem 1.2rem;margin:1.5rem 0;box-shadow:0 8px 20px rgba(0,0,0,0.06);border:1px solid var(--border);text-align:center;}
+    .candidate-avatar{width:60px;height:60px;border-radius:50%;background:var(--black);margin:0 auto 0.8rem;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--white);font-weight:700;box-shadow:0 4px 15px rgba(0,0,0,0.15);}
+    .candidate-name{font-size:1.3rem;font-weight:700;color:var(--black);margin-bottom:0.2rem;font-family:'Poppins';}
+    .candidate-role{font-size:0.9rem;color:var(--success);font-weight:600;}
+    
+    .form-section{background:var(--white);border-radius:12px;padding:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.04);border:1px solid var(--border);margin-bottom:1.2rem;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+    .form-group{display:flex;flex-direction:column;}
+    .form-label{font-weight:600;color:var(--dark-gray);margin-bottom:0.4rem;font-size:0.85rem;}
+    .form-input,.form-select{padding:0.7rem;border:2px solid var(--border);border-radius:8px;font-size:0.9rem;transition:all 0.3s;}
+    .form-input:focus,.form-select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 2px rgba(59,130,246,0.1);}
+    
+    .time-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.8rem;margin:0.8rem 0;}
+    .time-slot{padding:0.6rem;text-align:center;border:2px solid var(--border);border-radius:8px;cursor:pointer;font-weight:500;font-size:0.85rem;transition:all 0.3s;}
+    .time-slot:hover,.time-slot.active{background:var(--success);color:white;border-color:var(--success);}
+    
+    .btn-submit{width:100%;padding:0.8rem;background:var(--black);color:white;border:none;border-radius:20px;font-weight:600;font-size:0.9rem;cursor:pointer;transition:all 0.3s;font-family:'Inter';text-transform:uppercase;letter-spacing:0.3px;}
+    .btn-submit:hover{background:var(--dark-gray);transform:translateY(-1px);}
+    .btn-back{display:inline-block;margin-top:0.8rem;padding:0.6rem 1.2rem;background:transparent;color:var(--dark-gray);border:2px solid var(--lighter-gray);border-radius:20px;text-decoration:none;font-weight:600;font-size:0.85rem;}
+    
+    @media (max-width:768px){
+      .form-row{grid-template-columns:1fr;}
+      .container{padding:0 1rem;}
+      .candidate-header{padding:1.2rem 1rem;}
+      .time-grid{grid-template-columns:repeat(auto-fit,minmax(90px,1fr));}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">IIT Consultancy</div>
+        <a href="talent-hub.html">← Back to Talent</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- UNIQUE IDs WITH SAMPLE NUMBERS -->
+    <div class="candidate-header" id="candidateInfo_78452391">
+      <div class="candidate-avatar" id="candidateAvatar_78452391">AP</div>
+      <h2 class="candidate-name" id="candidateName_78452391">Loading...</h2>
+      <div class="candidate-role" id="candidateRole_78452391">Loading...</div>
+    </div>
+
+    <form class="form-section" id="interviewForm_78452391">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="yourName_78452391">Your Name *</label>
+          <input type="text" class="form-input" id="yourName_78452391" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="yourEmail_78452391">Your Email *</label>
+          <input type="email" class="form-input" id="yourEmail_78452391" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="interviewDate_78452391">Preferred Date *</label>
+        <input type="date" class="form-input" id="interviewDate_78452391" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Preferred Time *</label>
+        <div class="time-grid" id="timeSlots_78452391"></div>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="interviewMode_78452391">Interview Mode</label>
+        <select class="form-select" id="interviewMode_78452391">
+          <option value="online">Online (Zoom/Google Meet)</option>
+          <option value="inperson">In-Person (STPI Tirupati)</option>
+          <option value="phone">Phone Call</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label" for="notes_78452391">Notes (Optional)</label>
+        <textarea class="form-input" id="notes_78452391" rows="2" placeholder="Any special requirements..."></textarea>
+      </div>
+      
+      <button type="submit" class="btn-submit">✅ Confirm Interview Request</button>
+    </form>
+    
+    <a href="talent-hub.html" class="btn-back">← Back to Talent Hub</a>
+  </div>
+
+  <script>
+    // ✅ UNIQUE ID GENERATOR (MATCHES candidate-profile.html)
+    function generateUniqueId(prefix = '') {
+      return prefix + '_' + Date.now() + Math.floor(Math.random() * 10000);
+    }
+
+    // Generate unique IDs for this page instance
+    const UNIQUE_IDS = {
+      candidateInfo: generateUniqueId('candidateInfo'),
+      candidateAvatar: generateUniqueId('candidateAvatar'),
+      candidateName: generateUniqueId('candidateName'),
+      candidateRole: generateUniqueId('candidateRole'),
+      interviewForm: generateUniqueId('interviewForm'),
+      yourName: generateUniqueId('yourName'),
+      yourEmail: generateUniqueId('yourEmail'),
+      interviewDate: generateUniqueId('interviewDate'),
+      timeSlots: generateUniqueId('timeSlots'),
+      interviewMode: generateUniqueId('interviewMode'),
+      notes: generateUniqueId('notes')
+    };
+
+    // Update all IDs dynamically
+    document.getElementById('candidateInfo_78452391').id = UNIQUE_IDS.candidateInfo;
+    document.getElementById('candidateAvatar_78452391').id = UNIQUE_IDS.candidateAvatar;
+    document.getElementById('candidateName_78452391').id = UNIQUE_IDS.candidateName;
+    document.getElementById('candidateRole_78452391').id = UNIQUE_IDS.candidateRole;
+    document.getElementById('interviewForm_78452391').id = UNIQUE_IDS.interviewForm;
+    document.getElementById('yourName_78452391').id = UNIQUE_IDS.yourName;
+    document.getElementById('yourEmail_78452391').id = UNIQUE_IDS.yourEmail;
+    document.getElementById('interviewDate_78452391').id = UNIQUE_IDS.interviewDate;
+    document.getElementById('timeSlots_78452391').id = UNIQUE_IDS.timeSlots;
+    document.getElementById('interviewMode_78452391').id = UNIQUE_IDS.interviewMode;
+    document.getElementById('notes_78452391').id = UNIQUE_IDS.notes;
+
+    // READ URL PARAMETERS FROM candidate-profile.html
+    const urlParams = new URLSearchParams(window.location.search);
+    const candidateId = urlParams.get('candidate');
+    const candidateName = decodeURIComponent(urlParams.get('name') || 'Unknown');
+    const candidateRole = decodeURIComponent(urlParams.get('role') || 'Unknown');
+    const candidateEmail = decodeURIComponent(urlParams.get('email') || '');
+
+    // Populate candidate info with UNIQUE IDs
+    document.getElementById(UNIQUE_IDS.candidateAvatar).textContent = candidateName.charAt(0) + (candidateName.split(' ')[1]?.charAt(0) || '');
+    document.getElementById(UNIQUE_IDS.candidateName).textContent = candidateName;
+    document.getElementById(UNIQUE_IDS.candidateRole).textContent = candidateRole;
+
+    // Time slots with UNIQUE ID
+    const timeSlots = ['10AM', '11AM', '2PM', '3PM', '4PM', '5PM'];
+    document.getElementById(UNIQUE_IDS.timeSlots).innerHTML = timeSlots.map(slot => 
+      `<div class="time-slot" onclick="selectTime(this)" data-slot="${slot}">${slot}</div>`
+    ).join('');
+
+    let selectedTime = null;
+    window.selectTime = function(slot) {
+      document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
+      slot.classList.add('active');
+      selectedTime = slot.dataset.slot;
+    };
+
+    // Form submit with UNIQUE IDs
+    document.getElementById(UNIQUE_IDS.interviewForm).addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (!selectedTime) {
+        alert('Please select a time slot');
+        return;
+      }
+
+      const formData = {
+        candidate: {name: candidateName, role: candidateRole, email: candidateEmail},
+        interviewer: {
+          name: document.getElementById(UNIQUE_IDS.yourName).value,
+          email: document.getElementById(UNIQUE_IDS.yourEmail).value
+        },
+        date: document.getElementById(UNIQUE_IDS.interviewDate).value,
+        time: selectedTime,
+        mode: document.getElementById(UNIQUE_IDS.interviewMode).value,
+        notes: document.getElementById(UNIQUE_IDS.notes).value
+      };
+
+      alert(`✅ Request Sent!\n\n📅 ${formData.date} ${formData.time}\n👤 ${formData.candidate.name}`);
+      window.location.href = 'talent-hub.html';
+    });
+
+    // Set tomorrow as min date
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    document.getElementById(UNIQUE_IDS.interviewDate).min = tomorrow.toISOString().split('T')[0];
+  </script>
+</body>
+</html>

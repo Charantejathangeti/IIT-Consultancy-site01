@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IIT Consultancy - Home</title>
+  <style>
+    /* VARIABLES */
+    :root {
+      --body-bg: #fafbfc;
+      --card-bg: #fff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #64748b;
+      --border-light: #e2e8f0;
+      --header-bg: #0f172a;
+      --footer-bg: #111827;
+      --menu-text: #f1f5f9;
+      --menu-hover: #e2e8f0;
+      --accent-ultra-light: #f8fafc;
+      --gray-hover: #999999;
+    }
+
+    /* RESET + BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--body-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* DARK HEADER */
+    header {
+      background: var(--header-bg);
+      color: var(--menu-text);
+      padding: 1.2rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 20px rgba(15, 23, 42, 0.3);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    nav a {
+      color: var(--menu-text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+      font-size: 1rem;
+    }
+    nav a:hover,
+    nav a.active {
+      color: var(--menu-hover);
+      border-bottom: 2px solid var(--menu-hover);
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 8rem 1rem 6rem;
+      background: var(--card-bg);
+      margin-bottom: 2rem;
+    }
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: 3.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 1.1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent-ultra-light);
+      color: var(--text-primary);
+      box-shadow: 0 4px 20px rgba(248, 250, 252, 0.3);
+    }
+    /* ✅ GRAY HOVER FOR PRIMARY BUTTON */
+    .btn-primary:hover {
+      background: var(--gray-hover);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--border-light);
+    }
+    /* ✅ GRAY HOVER FOR SECONDARY BUTTON */
+    .btn-secondary:hover {
+      background: var(--gray-hover);
+      color: #fff;
+      border-color: var(--gray-hover);
+    }
+
+    /* FEATURES SECTION */
+    .features-section {
+      padding: 6rem 1rem;
+      background: var(--body-bg);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 4rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-primary);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    .feature-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    /* STATS SECTION */
+    .stats-section {
+      padding: 5rem 1rem;
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    /* PERFECTLY CENTERED FOOTER */
+    footer {
+      background: var(--footer-bg);
+      color: var(--menu-text);
+      padding: 4rem 1rem 2rem;
+      margin-top: 6rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .footer-section {
+      text-align: center;
+    }
+
+    .footer-section h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--menu-text);
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+    .footer-links a {
+      color: var(--menu-hover);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.25rem 0;
+    }
+    .footer-links a:hover {
+      color: var(--menu-text);
+      transform: translateX(4px);
+    }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      gap: 1rem;
+      background: rgba(255,255,255,0.08);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      align-items: center;
+      min-width: 250px;
+      transition: transform 0.3s;
+    }
+
+    .footer-contact-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .footer-contact-item strong {
+      color: var(--menu-text);
+      font-weight: 700;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      margin-top: 2rem;
+      max-width: 600px;
+    }
+
+    .copyright {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--menu-text);
+      margin-bottom: 0.5rem;
+    }
+    .founder-text {
+      color: var(--menu-hover);
+      font-weight: 600;
+    }
+
+    .stpi-footer {
+      background: var(--header-bg);
+      color: var(--menu-text);
+      font-weight: 700;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-top: 2px solid rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-contact-item {
+        min-width: auto;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div style="font-weight: 700; font-size: 1.3rem; color: var(--menu-text);">IIT Consultancy</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="for-employers.html">Employers</a></li>
+        <li><a href="for-candidates.html">Candidates</a></li>
+        <li><a href="talent-hub.html">Talent Hub</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Connecting IIT Talent<br />with Global Opportunities</h1>
+    <p>Premium consultancy matching top IIT graduates with leading organizations worldwide</p>
+    <div class="cta-buttons">
+      <a href="for-employers.html" class="btn btn-primary">Hire Talent</a>
+      <a href="for-candidates.html" class="btn btn-secondary">Find Jobs</a>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <h2 class="section-title">Why Choose Us?</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎓</div>
+      <h3 class="feature-title">IIT Exclusive</h3>
+      <p>Access to top 1% IIT graduates from premier institutes across India with verified credentials</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3 class="feature-title">98% Success</h3>
+      <p>Proven track record with highest placement success rate in technology recruitment</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌍</div>
+      <h3 class="feature-title">Global Reach</h3>
+      <p>50+ international partners across USA, Europe, and APAC regions</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Talents Placed</div>
+    </div>
+    <div>
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Partners</div>
+    </div>
+    <div>
+      <div class="stat-number">5</div>
+      <div class="stat-label">Years</div>
+    </div>
+    <div>
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Support</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3>🏢 Company</h3>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="for-employers.html">For Employers</a></li>
+          <li><a href="for-candidates.html">For Candidates</a></li>
+          <li><a href="talent-hub.html">Talent Hub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>⚡ Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up</a></li>
+          <li><a href="employer-dashboard.html">Employer Dashboard</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>📞 Contact</h3>
+        <div class="footer-contact">
+          <div class="footer-contact-item">
+            <div>📱</div>
+            <div><strong>+91 9392201234</strong><br><small>+91 8712345519</small></div>
+          </div>
+          <div class="footer-contact-item">
+            <div>📍</div>
+            <div><strong>STPI Tirupati</strong><br><small>Survey No. 234, Behind Shilparamam</small></div>
+          </div>
+          <div class="footer-contact-item">
+            <div>✉️</div>
+            <div><strong>info@iitconsultancy.com</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">© 2025 IIT Consultancy / IIT Services</p>
+      <p class="founder-text">Founded by P. Rajinikanth Reddy | All Rights Reserved</p>
+    </div>
+  </div>
+</footer>
+
+<div class="stpi-footer">
+  Software Technology Parks of India (STPI) | Tirupati, AP 517501
+</div>
+
+</body>
+</html>
